@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Header } from './styles';
+import { FaPlus, FaSearch } from 'react-icons/fa';
+import { Header, Button, Search } from './styles';
 
 import api from '~/services/api';
 
 export default function Students() {
-  // useEffect(() => {
-  //   async function loadStudents() {
-  //     const response = await api.get('/students');
-  //     return response;
-  //   }
-  // }, []);
   const [student, setStudent] = useState([]);
 
   useEffect(() => {
@@ -28,14 +23,23 @@ export default function Students() {
     <>
       <Header>
         <h1>Gerenciamento de alunos</h1>
-        <button type="submit">teste</button>
+        <div>
+          <Button type="submit">
+            <FaPlus size={16} color="#fff" />
+            <span>CADASTRAR</span>
+          </Button>
+          <Search>
+            <FaSearch size={16} color="#ccc" />
+            <input type="text" placeholder="Buscar aluno" />
+          </Search>
+        </div>
       </Header>
       <div>
         <table>
           <thead>
             <tr>
               <th>NOME</th>
-              <th>E-EMAIL</th>
+              <th>E-MAIL</th>
               <th>IDADE</th>
             </tr>
           </thead>
@@ -49,7 +53,12 @@ export default function Students() {
                   <Link to={`/students/edit/${s.id}`}>editar</Link>
                 </td>
                 <td>
-                  <Link to={`/students/edit/${s.id}`}>excluir</Link>
+                  <Link
+                    style={{ color: '#e77575' }}
+                    to={`/students/edit/${s.id}`}
+                  >
+                    excluir
+                  </Link>
                 </td>
               </tr>
             </tbody>

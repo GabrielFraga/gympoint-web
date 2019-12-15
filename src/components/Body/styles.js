@@ -11,24 +11,44 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   header {
-    margin-top: 20px;
+    margin-top: 40px;
+    justify-content: space-between;
 
     h1 {
       color: #555;
     }
 
+    > div {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        margin: 0 10px;
+      }
+    }
+
     button {
-      height: 39px;
+      border: 0;
+      border-radius: 6px;
+      overflow: hidden;
+
+      font-weight: bold;
+      padding: 11px;
+
+      display: flex;
+      transition: background 0.2s;
+
+      justify-content: space-between;
     }
   }
 
-  div {
+  > div {
     background: #fff;
     margin-top: 25px;
     min-width: 500px;
     border-radius: 6px;
 
-    padding: 20px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
   }
@@ -39,7 +59,7 @@ export const Content = styled.div`
 
     td,
     th {
-      padding: 20px;
+      padding: 20px 60px;
       font-size: 16px;
     }
 
@@ -51,8 +71,14 @@ export const Content = styled.div`
       color: #666;
 
       a {
-        color: #71c;
+        color: #7ba4f2;
       }
+    }
+  }
+
+  input {
+    &::placeholder {
+      color: #aaa;
     }
   }
 `;
