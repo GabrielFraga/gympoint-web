@@ -22,7 +22,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Search = styled.div`
+export const Search = styled.form`
   display: flex;
   border: 1px solid #ccc;
   border-radius: 4px;

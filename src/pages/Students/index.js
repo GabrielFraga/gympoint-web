@@ -9,15 +9,27 @@ import api from '~/services/api';
 
 export default function Students() {
   const [student, setStudent] = useState([]);
+  const [searchStudent, setSearchStudent] = useState([]);
 
   useEffect(() => {
     async function loadStudents() {
       const response = await api.get('/students');
-      console.tron.log(response.data.students);
       setStudent(response.data.students);
     }
     loadStudents();
   }, []);
+
+  async function handleChange(e) {
+    setSearchStudent(e.target.value);
+
+    const name = e.target.value;
+    const response = await api.get(`/students`, {
+      params: {
+        user: name,
+      },
+    });
+    setStudent(response.data.students);
+  }
 
   return (
     <>
@@ -30,7 +42,13 @@ export default function Students() {
           </Button>
           <Search>
             <FaSearch size={16} color="#ccc" />
-            <input type="text" placeholder="Buscar aluno" />
+            <input
+              type="text"
+              name="user"
+              value={searchStudent}
+              onChange={handleChange}
+              placeholder="Buscar aluno"
+            />
           </Search>
         </div>
       </Header>
