@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaPlus, FaSearch } from 'react-icons/fa';
-import { Header, Button, Search } from './styles';
+import { Header, ConfirmButton, Search } from './styles';
 
 import api from '~/services/api';
 
@@ -36,10 +36,12 @@ export default function Students() {
       <Header>
         <h1>Gerenciamento de alunos</h1>
         <div>
-          <Button type="submit">
-            <FaPlus size={16} color="#fff" />
-            <span>CADASTRAR</span>
-          </Button>
+          <Link to="/students/add">
+            <ConfirmButton>
+              <FaPlus size={16} color="#fff" />
+              <span>CADASTRAR</span>
+            </ConfirmButton>
+          </Link>
           <Search>
             <FaSearch size={16} color="#ccc" />
             <input
