@@ -45,7 +45,6 @@ export const Content = styled.div`
   > div {
     background: #fff;
     margin-top: 25px;
-    min-width: 500px;
     border-radius: 6px;
 
     padding: 5px;
