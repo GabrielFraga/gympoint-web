@@ -64,7 +64,7 @@ export const Form = styled.form`
   }
 
   input {
-    display: block;
+    /* display: block; */
     width: 100%;
     height: 40px;
     border: 1px solid #ccc7;
@@ -74,4 +74,15 @@ export const Form = styled.form`
     padding: 10px;
     color: #444;
   }
+`;
+
+export const FirstSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SecondSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 `;

@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
 
-import { Header, ConfirmButton, BackButton, Form } from './styles';
+import {
+  Header,
+  ConfirmButton,
+  BackButton,
+  Form,
+  FirstSection,
+  SecondSection,
+} from './styles';
 
 import api from '~/services/api';
 
@@ -28,26 +35,30 @@ export default function AddStudent() {
       </Header>
       <div>
         <Form>
-          <label>
-            NOME COMPLETO
-            <input type="text" />
-          </label>
-          <label>
-            ENDERECO DE E-MAIL
-            <input type="text" />
-          </label>
-          <label>
-            IDADE
-            <input type="text" />
-          </label>
-          <label>
-            PESO (em kg)
-            <input type="text" />
-          </label>
-          <label>
-            ALTURA
-            <input type="text" />
-          </label>
+          <FirstSection>
+            <label>
+              NOME COMPLETO
+              <input type="text" />
+            </label>
+            <label>
+              ENDERECO DE E-MAIL
+              <input type="text" />
+            </label>
+          </FirstSection>
+          <SecondSection>
+            <label>
+              IDADE
+              <input type="text" />
+            </label>
+            <label>
+              PESO (em kg)
+              <input type="text" />
+            </label>
+            <label>
+              ALTURA
+              <input type="text" />
+            </label>
+          </SecondSection>
         </Form>
       </div>
     </>
