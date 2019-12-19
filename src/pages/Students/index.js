@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaPlus, FaSearch } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { Header, ConfirmButton, Search } from './styles';
 
 import api from '~/services/api';
@@ -17,7 +18,7 @@ export default function Students() {
       setStudent(response.data.students);
     }
     loadStudents();
-  }, []);
+  }, [student]);
 
   async function handleChange(e) {
     setSearchStudent(e.target.value);
@@ -29,6 +30,18 @@ export default function Students() {
       },
     });
     setStudent(response.data.students);
+  }
+
+  async function handleDelete(id) {
+    const resp = window.confirm('Deseja realmente remover este aluno?');
+    if (resp) {
+      try {
+        await api.delete(`/students/${id}`);
+        toast.success('Aluno removido com sucesso!');
+      } catch (error) {
+        toast.error('Falha na autenticação, verifique os dados eviados!');
+      }
+    }
   }
 
   return (
@@ -73,12 +86,9 @@ export default function Students() {
                   <Link to={`/students/edit/${s.id}`}>editar</Link>
                 </td>
                 <td>
-                  <Link
-                    style={{ color: '#e77575' }}
-                    to={`/students/edit/${s.id}`}
-                  >
+                  <button type="button" onClick={() => handleDelete(s.id)}>
                     excluir
-                  </Link>
+                  </button>
                 </td>
               </tr>
             </tbody>

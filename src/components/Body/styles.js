@@ -56,10 +56,11 @@ export const Content = styled.div`
     width: 100%;
     text-align: left;
 
+    font-size: 16px;
+
     td,
     th {
       padding: 20px 60px;
-      font-size: 16px;
     }
 
     th {
@@ -71,6 +72,12 @@ export const Content = styled.div`
 
       a {
         color: #7ba4f2;
+      }
+      button {
+        color: #e77575;
+        background: none;
+        border: none;
+        font-size: 16px;
       }
     }
   }
