@@ -33,6 +33,7 @@ export default function UpdateStudent() {
           id,
         },
       });
+      console.tron.log(response.data.student);
       setStudent(response.data.student);
     }
     loadStudent();

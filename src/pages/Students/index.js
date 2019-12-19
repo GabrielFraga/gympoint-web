@@ -15,6 +15,7 @@ export default function Students() {
   useEffect(() => {
     async function loadStudents() {
       const response = await api.get('/students');
+      console.tron.log(response.data.students);
       setStudent(response.data.students);
     }
     loadStudents();
