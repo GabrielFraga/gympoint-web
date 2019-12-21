@@ -6,45 +6,38 @@ import { Container, Content } from './styles';
 
 export default function HelpOrders() {
   const [order, setOrder] = useState([]);
-  const [student, setstudent] = useState([]);
+  const [student, setStudent] = useState([]);
 
   useEffect(() => {
-    async function loadHelpOrders() {
+    async function loadHelpOrder() {
       const response = await api.get('/students/help-orders');
-      // setOrder(response.data.order);
-      console.tron.log(response.data.order);
+      setOrder(response.data.order);
     }
-    // console.tron.log(order);
-
-    //   const students = order.map(async or => {
-    //     await api.get(`/students/${or.student_id}`);
-    //   });
-    //   setstudent(students);
-    // };
-    loadHelpOrders();
-  }, [order]);
+    loadHelpOrder();
+  }, []);
 
   return (
     <Container>
+      {/* {console.tron.log(student)} */}
       <header />
       <Content>
-        {/* <table>
+        <table>
           <thead>
             <tr>
               <th>ALUNO</th>
             </tr>
           </thead>
-          {student.map(s => (
-            <tbody key={s.id}>
-              <tr>
-                <td>s.name</td>
+          <tbody>
+            {order.map(s => (
+              <tr key={s.id}>
+                <td>{s.student_name}</td>
                 <td>
                   <button type="button">responder</button>
                 </td>
               </tr>
-            </tbody>
-          ))}
-        </table> */}
+            ))}
+          </tbody>
+        </table>
       </Content>
     </Container>
   );

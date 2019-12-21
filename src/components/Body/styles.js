@@ -67,6 +67,17 @@ export const Content = styled.div`
       color: #555;
     }
 
+    tbody {
+      tr {
+        border-bottom: 1px solid #ccc;
+        margin: 0 10px;
+
+        &:last-of-type {
+          border: none;
+        }
+      }
+    }
+
     td {
       color: #666;
 

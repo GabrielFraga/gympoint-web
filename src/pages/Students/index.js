@@ -14,12 +14,12 @@ export default function Students() {
 
   useEffect(() => {
     async function loadStudents() {
-      const response = await api.get('/students');
-      console.tron.log(response.data.students);
-      setStudent(response.data.students);
+      const students = await api.get('/students');
+      console.tron.log(students.data.students);
+      setStudent(students.data.students);
     }
     loadStudents();
-  }, [student]);
+  }, []);
 
   async function handleChange(e) {
     setSearchStudent(e.target.value);
@@ -34,11 +34,13 @@ export default function Students() {
   }
 
   async function handleDelete(id) {
+    // eslint-disable-next-line no-alert
     const resp = window.confirm('Deseja realmente remover este aluno?');
     if (resp) {
       try {
         await api.delete(`/students/${id}`);
-        toast.success('Aluno removido com sucesso!');
+
+        window.location.reload();
       } catch (error) {
         toast.error('Falha na autenticação, verifique os dados eviados!');
       }
@@ -77,9 +79,9 @@ export default function Students() {
               <th>IDADE</th>
             </tr>
           </thead>
-          {student.map(s => (
-            <tbody key={s.id}>
-              <tr>
+          <tbody>
+            {student.map(s => (
+              <tr key={s.id}>
                 <td>{s.name}</td>
                 <td>{s.email}</td>
                 <td>{s.age}</td>
@@ -92,8 +94,8 @@ export default function Students() {
                   </button>
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       </div>
     </>
