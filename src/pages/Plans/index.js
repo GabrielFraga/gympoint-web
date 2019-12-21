@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { FaPlus } from 'react-icons/fa';
 import { Content, ConfirmButton, Header } from './styles';
+import history from '~/services/history';
 
 import api from '~/services/api';
 import { formatPrice } from '../../util/format';
@@ -27,12 +28,24 @@ export default function Plans() {
     loadPlans();
   });
 
-  async function handleDelete() {}
+  async function handleDelete(id) {
+    // eslint-disable-next-line no-alert
+    const resp = window.confirm('Deseja realmente remover este aluno?');
+    if (resp) {
+      try {
+        await api.delete(`/plans/${id}`);
+        toast.success('Usuário removido com sucesso!');
+        history.push('/');
+      } catch (error) {
+        toast.error('Falha na autenticação, verifique os dados eviados!');
+      }
+    }
+  }
   return (
     <>
       <Header>
-        <h1>Gerenciamento de alunos</h1>
-        <Link to="/students/add">
+        <h1>Gerenciamento de planos</h1>
+        <Link to="/plans/add">
           <ConfirmButton>
             <FaPlus size={16} color="#fff" />
             <span>CADASTRAR</span>

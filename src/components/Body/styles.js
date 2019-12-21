@@ -41,52 +41,83 @@ export const Content = styled.div`
     padding: 5px;
     display: flex;
     flex-direction: column;
-  }
 
-  table {
-    width: 100%;
-    text-align: left;
+    form {
+      display: flex;
+      background: #fff;
+      flex-direction: column;
 
-    font-size: 16px;
+      padding: 40px;
 
-    td,
-    th {
-      padding: 20px 60px;
+      label {
+        font-weight: bold;
+        margin-top: 20px;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        height: 40px;
+        border: 1px solid #ccc7;
+        border-radius: 4px;
+
+        font-size: 16px;
+        padding: 10px;
+        color: #444;
+      }
+
+      span {
+        color: #fb6f91;
+        margin: 0 0 10px;
+        font-weight: bold;
+      }
     }
 
-    th {
-      color: #555;
-    }
+    table {
+      width: 100%;
+      text-align: left;
 
-    tbody {
-      tr {
-        border-bottom: 1px solid #ccc;
-        margin: 0 10px;
+      font-size: 16px;
 
-        &:last-of-type {
+      td,
+      th {
+        padding: 20px 60px;
+      }
+
+      th {
+        color: #555;
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #ccc;
+          margin: 0 10px;
+
+          &:last-of-type {
+            border: none;
+          }
+        }
+      }
+
+      td {
+        color: #666;
+
+        a {
+          color: #7ba4f2;
+        }
+        button {
+          color: #e77575;
+          background: none;
           border: none;
+          font-size: 16px;
         }
       }
     }
 
-    td {
-      color: #666;
-
-      a {
-        color: #7ba4f2;
+    input {
+      &::placeholder {
+        color: #aaa;
       }
-      button {
-        color: #e77575;
-        background: none;
-        border: none;
-        font-size: 16px;
-      }
-    }
-  }
-
-  input {
-    &::placeholder {
-      color: #aaa;
     }
   }
 `;
