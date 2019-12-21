@@ -26,6 +26,7 @@ export default createGlobalStyle`
 
   body, input, button {
     font: 14px 'Roboto', sans-serif;
+    color: #333;
   }
 
   a {
@@ -35,8 +36,16 @@ export default createGlobalStyle`
   ul {
     list-style: none;
   }
-
+  
   button {
+    border: 0;
+    border-radius: 6px;
+    overflow: hidden;
+
+    display: flex;
+    transition: background 0.2s;
+
+    justify-content: space-between;
     cursor: pointer;
   }
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import history from '~/services/history';
 import { Header, ConfirmButton, Search } from './styles';
 
 import api from '~/services/api';
@@ -39,8 +40,8 @@ export default function Students() {
     if (resp) {
       try {
         await api.delete(`/students/${id}`);
-
-        window.location.reload();
+        toast.success('Usuário removido com sucesso!');
+        history.push('/');
       } catch (error) {
         toast.error('Falha na autenticação, verifique os dados eviados!');
       }

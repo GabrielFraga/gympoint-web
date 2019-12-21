@@ -28,17 +28,8 @@ export const Content = styled.div`
     }
 
     button {
-      border: 0;
-      border-radius: 6px;
-      overflow: hidden;
-
       font-weight: bold;
       padding: 11px;
-
-      display: flex;
-      transition: background 0.2s;
-
-      justify-content: space-between;
     }
   }
 
