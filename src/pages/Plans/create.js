@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 
 import { toast } from 'react-toastify';
+
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
+
+import * as Yup from 'yup';
+
 import history from '~/services/history';
 import api from '~/services/api';
+
 import {
   Container,
   Header,
@@ -15,12 +20,51 @@ import {
   SecondSection,
 } from './styles';
 
-// import { Container } from './styles';
-
 export default function AddPlan() {
-  const [total, setTotal] = useState([0]);
+  const schema = Yup.object().shape({
+    title: Yup.string()
+      .required('Esse campo é obrigatório')
+      .typeError('Título é obrigatório'),
+    duration: Yup.number('Insira uma duração válida')
+      .required('Esse campo é obrigatório')
+      .typeError('Duração deve ser um número'),
+    price: Yup.number('Insira um preço válido')
+      .required('Esse campo é obrigatório')
+      .typeError('Preço deve ser um número'),
+  });
 
-  function handleSubmit() {}
+  const [total, setTotal] = useState([0]);
+  const [plan, setPlan] = useState([]);
+
+  async function handleSubmit({ title, price, duration }) {
+    try {
+      await api.post('/plans', {
+        title,
+        price,
+        duration,
+      });
+      toast.success('Plano cadastrado com sucesso');
+      history.push('/plans');
+    } catch (error) {
+      toast.error('Erro na validação dos dados. Tente novamente');
+    }
+  }
+
+  useEffect(() => {
+    console.tron.log(plan);
+    if (plan.price && plan.duration) {
+      const totalValue = parseFloat(plan.price) * parseFloat(plan.duration);
+      setTotal(totalValue);
+    }
+  }, [plan]);
+
+  function handleChange(e) {
+    e.persist();
+    setPlan(inputs => ({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    }));
+  }
 
   return (
     <>
@@ -42,8 +86,9 @@ export default function AddPlan() {
       <Container>
         <Form
           id="addPlan"
-          // schema={schema}
+          schema={schema}
           onSubmit={handleSubmit}
+          onChange={handleChange}
         >
           <FirstSection>
             <label>
@@ -53,7 +98,7 @@ export default function AddPlan() {
           </FirstSection>
           <SecondSection>
             <label>
-              DURAÇÃO
+              DURAÇÃO (em meses)
               <Input type="text" name="duration" />
             </label>
             <label>
@@ -62,7 +107,7 @@ export default function AddPlan() {
             </label>
             <label>
               PREÇO TOTAL
-              <Input type="text" name="total" value={total} />
+              <Input type="number" disabled name="total" value={total} />
             </label>
           </SecondSection>
         </Form>

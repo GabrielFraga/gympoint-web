@@ -3,40 +3,7 @@ import { darken } from 'polished';
 
 // cor principal #ee4d64
 
-export const Container = styled.div`
-  max-width: 100vh;
-
-  form {
-    display: flex;
-    background: #fff;
-    flex-direction: column;
-
-    padding: 40px;
-
-    label {
-      font-weight: bold;
-      margin-top: 20px;
-      color: #555;
-    }
-
-    input {
-      width: 100%;
-      height: 40px;
-      border: 1px solid #ccc7;
-      border-radius: 4px;
-
-      font-size: 16px;
-      padding: 10px;
-      color: #444;
-    }
-
-    span {
-      color: #fb6f91;
-      margin: 0 0 10px;
-      font-weight: bold;
-    }
-  }
-`;
+export const Container = styled.div``;
 
 export const Header = styled.header`
   display: flex;

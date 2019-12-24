@@ -32,7 +32,15 @@ export const Content = styled.div`
       padding: 11px;
     }
   }
+  input {
+    &::placeholder {
+      color: #aaa;
 
+      &[disabled] {
+        color: #aaa;
+      }
+    }
+  }
   > div {
     background: #fff;
     margin-top: 25px;
@@ -111,12 +119,6 @@ export const Content = styled.div`
           border: none;
           font-size: 16px;
         }
-      }
-    }
-
-    input {
-      &::placeholder {
-        color: #aaa;
       }
     }
   }

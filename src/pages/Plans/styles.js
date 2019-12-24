@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  max-width: 100vh;
+`;
 export const Content = styled.div``;
 
 export const Header = styled.header`
