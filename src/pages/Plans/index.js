@@ -30,12 +30,12 @@ export default function Plans() {
 
   async function handleDelete(id) {
     // eslint-disable-next-line no-alert
-    const resp = window.confirm('Deseja realmente remover este aluno?');
+    const resp = window.confirm('Deseja realmente remover este plano?');
     if (resp) {
       try {
         await api.delete(`/plans/${id}`);
-        toast.success('Usuário removido com sucesso!');
-        history.push('/');
+        toast.success('Plano removido com sucesso!');
+        history.push('/plans');
       } catch (error) {
         toast.error('Falha na autenticação, verifique os dados eviados!');
       }
@@ -68,7 +68,7 @@ export default function Plans() {
                 <td>{s.formattedDuration}</td>
                 <td>{s.formattedPrice}</td>
                 <td>
-                  <Link to={`/students/edit/${s.id}`}>editar</Link>
+                  <Link to={`/plans/edit/${s.id}`}>editar</Link>
                 </td>
                 <td>
                   <button type="button" onClick={() => handleDelete(s.id)}>

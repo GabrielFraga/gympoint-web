@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaCheck } from 'react-icons/fa';
+import { useParams } from 'react-router';
 
 import * as Yup from 'yup';
 
@@ -20,7 +21,24 @@ import {
   SecondSection,
 } from './styles';
 
-export default function AddPlan() {
+export default function UpdatePlan() {
+  const { id } = useParams();
+  const [total, setTotal] = useState([0]);
+
+  const [plan, setPlan] = useState([]);
+
+  useEffect(() => {
+    async function loadPlan() {
+      const response = await api.get('/plans', {
+        params: {
+          id,
+        },
+      });
+      setPlan(response.data.plan);
+    }
+    loadPlan();
+  }, [id]);
+
   const schema = Yup.object().shape({
     title: Yup.string()
       .required('Esse campo é obrigatório')
@@ -33,17 +51,14 @@ export default function AddPlan() {
       .typeError('Preço deve ser um número'),
   });
 
-  const [total, setTotal] = useState([0]);
-  const [plan, setPlan] = useState([]);
-
   async function handleSubmit({ title, price, duration }) {
     try {
-      await api.post('/plans', {
+      await api.put(`/plans/${id}`, {
         title,
         price,
         duration,
       });
-      toast.success('Plano cadastrado com sucesso');
+      toast.success('Plano salvo com sucesso');
       history.push('/plans');
     } catch (error) {
       toast.error('Erro na validação dos dados. Tente novamente');
@@ -51,8 +66,10 @@ export default function AddPlan() {
   }
 
   useEffect(() => {
-    const totalValue = parseFloat(plan.price) * parseFloat(plan.duration);
-    setTotal(totalValue);
+    if (plan.price && plan.duration) {
+      const totalValue = parseFloat(plan.price) * parseFloat(plan.duration);
+      setTotal(totalValue);
+    }
   }, [plan.duration, plan.price]);
 
   function handleChange(e) {
@@ -74,7 +91,7 @@ export default function AddPlan() {
               <span>VOLTAR</span>
             </BackButton>
           </Link>
-          <ConfirmButton form="addPlan" type="submit">
+          <ConfirmButton form="updatePlan" type="submit">
             <FaCheck size={16} color="#fff" onClick={handleSubmit} />
             <span>SALVAR</span>
           </ConfirmButton>
@@ -82,7 +99,7 @@ export default function AddPlan() {
       </Header>
       <Container>
         <Form
-          id="addPlan"
+          id="updatePlan"
           schema={schema}
           onSubmit={handleSubmit}
           onChange={handleChange}
@@ -90,17 +107,17 @@ export default function AddPlan() {
           <FirstSection>
             <label>
               TÍTULO DO PLANO
-              <Input type="text" name="title" />
+              <Input type="text" name="title" value={plan.title} />
             </label>
           </FirstSection>
           <SecondSection>
             <label>
               DURAÇÃO (em meses)
-              <Input type="text" name="duration" />
+              <Input type="text" name="duration" value={plan.duration} />
             </label>
             <label>
               PREÇO MENSAL
-              <Input type="text" name="price" />
+              <Input type="text" name="price" value={plan.price} />
             </label>
             <label>
               PREÇO TOTAL
