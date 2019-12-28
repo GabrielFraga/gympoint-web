@@ -34,6 +34,9 @@ export const Container = styled.div`
     }
 
     button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 5px 0 0;
       height: 44px;
       background: #ee4d64;
@@ -43,6 +46,7 @@ export const Container = styled.div`
       border-radius: 4px;
       font-size: 16px;
       transition: background 0.2s;
+      text-align: center;
 
       &:hover {
         background: ${darken(0.03, '#ee4d64')};

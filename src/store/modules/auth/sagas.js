@@ -17,7 +17,6 @@ export function* signIn({ payload }) {
     });
 
     const { token, user } = response.data;
-
     yield put(signInSuccess(token, user));
 
     history.push('/students');
@@ -37,7 +36,12 @@ export function setToken({ payload }) {
   }
 }
 
-export default all(
-  [takeLatest('persist/REHYDRATE', setToken)],
-  [takeLatest('@auth/SIGN_IN_REQUEST', signIn)]
-);
+export function signOut() {
+  history.push('/');
+}
+
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('@auth/SIGN_OUT', signOut),
+]);
