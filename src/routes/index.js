@@ -7,6 +7,7 @@ import AddStudents from '../pages/Students/create';
 import UpdateStudents from '../pages/Students/update';
 
 import Registrations from '../pages/Registrations';
+import AddRegistrations from '../pages/Registrations/create';
 
 import Plans from '../pages/Plans';
 import UpdatePlans from '../pages/Plans/update';
@@ -26,6 +27,7 @@ export default function Routes() {
       <Route path="/students/edit/:id" component={UpdateStudents} isPrivate />
 
       <Route path="/registrations" exact component={Registrations} isPrivate />
+      <Route path="/registrations/add" component={AddRegistrations} isPrivate />
 
       <Route path="/plans" exact component={Plans} isPrivate />
       <Route path="/plans/add" component={AddPlans} isPrivate />

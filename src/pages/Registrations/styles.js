@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100vh;
+`;
 
 export const Content = styled.div``;
 
@@ -34,4 +36,15 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   background: none !important;
+`;
+
+export const FirstSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SecondSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
 `;

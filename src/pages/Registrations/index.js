@@ -47,7 +47,7 @@ export default function Registrations() {
     <>
       <Header>
         <h1>Gerenciamento de matrículas</h1>
-        <Link to="/registration/add">
+        <Link to="/registrations/add">
           <ConfirmButton>
             <FaPlus size={16} color="#fff" />
             <span>CADASTRAR</span>
