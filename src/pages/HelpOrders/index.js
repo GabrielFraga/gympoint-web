@@ -55,7 +55,7 @@ export default function HelpOrders() {
           <tbody>
             {order.map(or => (
               <tr key={or.id}>
-                <td>{or.student_name}</td>
+                <td>{or.Student.name}</td>
                 <td>
                   <button type="button" onClick={() => toggleModal(or)}>
                     responder

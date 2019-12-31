@@ -41,7 +41,19 @@ export default function Registrations() {
     loadRegistrations();
   });
 
-  async function handleDelete() {}
+  async function handleDelete(id) {
+    // eslint-disable-next-line no-alert
+    const resp = window.confirm('Deseja realmente remover esta matrícula?');
+    if (resp) {
+      try {
+        await api.delete(`/registrations/${id}`);
+        toast.success('Matrícula removida com sucesso!');
+        history.push('/registrations');
+      } catch (error) {
+        toast.error('Falha na autenticação, verifique os dados eviados!');
+      }
+    }
+  }
 
   return (
     <>
